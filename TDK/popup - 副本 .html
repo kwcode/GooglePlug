@@ -1,0 +1,181 @@
+
+<style>
+    body { width: 350px; font-family: Arial; font-size: 0.8em; }
+
+    h1, h2, table, tr, td, th { font-size: inherit; }
+
+    .metric { width: 15%; text-align: right; }
+
+    #footer { margin-top: 10px; }
+
+    table { width: 100%; border: 1px solid black; border-collapse: collapse; }
+
+    tr { border-bottom: 1px solid black; }
+
+    td { border-right: 1px solid black; vertical-align: top; }
+</style>
+<div id="messages">
+    <h1>SiteMetrics Score: <strong id="score"></strong>/100</h1>
+    <table>
+        <!-- Title -->
+        <tr>
+            <td>Title</td>
+            <td class="metric" id="title_nominal"></td>
+            <td class="metric" id="title_actual"></td>
+        </tr>
+        <tr>
+            <td id="title" colspan="3"></td>
+        </tr>
+
+    </table><br />
+    <table>
+        <!-- Description -->
+        <tr>
+            <td>Description</td>
+            <td class="metric" id="description_nominal"></td>
+            <td class="metric" id="description_actual"></td>
+        </tr>
+        <tr>
+            <td id="description" colspan="3"></td>
+        </tr>
+
+    </table>
+    <br />
+    <table>
+        <!-- Description -->
+        <tr>
+            <td>Robots</td>
+            <td id="robots"></td>
+        </tr>
+
+        <tr>
+            <td>Keywords</td>
+            <td id="keywords"></td>
+        </tr>
+
+        <tr>
+            <td>URL</td>
+            <td id="url"></td>
+        </tr>
+
+        <tr>
+            <td>Meta-Language</td>
+            <td id="language"></td>
+        </tr>
+
+        <tr>
+            <td>HTML-Lang</td>
+            <td id="html_lang"></td>
+        </tr>
+
+        <tr>
+            <td>Content-Type &amp; Charset</td>
+            <td id="content_type"></td>
+        </tr>
+
+        <tr>
+            <td>Canonical</td>
+
+            <td id="canonical"></td>
+        </tr>
+        <!--
+        <tr>
+          <td>Words</td>
+
+          <td id="words"></td>
+        </tr>
+
+        -->
+
+        <tr>
+            <td>Links</td>
+
+            <td id="links"></td>
+        </tr>
+
+    </table>
+
+</div>
+
+<div id="footer">&copy; 2017-12 <a target="_blank" href="http://www.tool90.com">TDK</a> </div>
+<script>
+
+    var bg = chrome.extension.getBackgroundPage();
+
+    var msg = document.getElementById("messages");
+
+    var results = {};
+
+    chrome.tabs.getSelected(null, function (tab) {
+
+
+        results = bg.tabData[tab.id];
+
+        // toSiteMetricsXml(results);
+
+        document.getElementById("title").innerHTML = results.meta.title;
+        document.getElementById("title_actual").innerHTML = results.meta.title.length;
+        document.getElementById("title_nominal").innerHTML = results.check.nominal_title_length;
+
+
+
+
+        if (results.meta.description.length > 0) {
+            document.getElementById("description").innerHTML = results.meta.description;
+        } else {
+            document.getElementById("description").innerHTML = "<em>not set</em>";
+        }
+
+        document.getElementById("description_actual").innerHTML = results.meta.description.length;
+        document.getElementById("description_nominal").innerHTML = results.check.nominal_description_length;
+
+        document.getElementById("score").innerHTML = results.check.score;
+
+
+        if (results.meta.robots.length > 0) {
+            document.getElementById("robots").innerHTML = results.meta.robots;
+        } else {
+            document.getElementById("robots").innerHTML = "<em>not set</em>";
+        }
+
+        if (results.meta.keywords.length > 0) {
+            document.getElementById("keywords").innerHTML = results.meta.keywords;
+        } else {
+            document.getElementById("keywords").innerHTML = "<em>not set</em>";
+        }
+
+        if (results.meta.url.length > 0) {
+            document.getElementById("url").innerHTML = results.meta.url;
+        } else {
+            document.getElementById("url").innerHTML = "<em>not set</em>";
+        }
+
+        if (results.meta.canonical.length > 0) {
+            document.getElementById("canonical").innerHTML = results.meta.canonical;
+        } else {
+            document.getElementById("canonical").innerHTML = "<em>not set</em>";
+        }
+
+        if (results.meta.language.length > 0) {
+            document.getElementById("language").innerHTML = results.meta.language;
+        } else {
+            document.getElementById("language").innerHTML = "<em>not set</em>";
+        }
+
+        if (results.meta.html_lang.length > 0) {
+            document.getElementById("html_lang").innerHTML = results.meta.html_lang;
+        } else {
+            document.getElementById("html_lang").innerHTML = "<em>not set</em>";
+        }
+
+        if (results.meta.content_type.length > 0) {
+            document.getElementById("content_type").innerHTML = results.meta.content_type;
+        } else {
+            document.getElementById("content_type").innerHTML = "<em>not set</em>";
+        }
+
+
+        document.getElementById("links").innerHTML = results.meta.links_overall;
+
+    });
+</script>

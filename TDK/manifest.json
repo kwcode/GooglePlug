@@ -1,8 +1,10 @@
 ﻿{
+
     "name": "TDK查看器", //应用程序名
     "version": "2.1", //代表版本号
     "description": "SEO辅助工具,查看网站三要素等信息", //功能描述
-    "manifest_version": 2,
+    "manifest_version": 2, //现在应该总是2。
+    "background": "app.html",
     "browser_action": {
         "default_icon": "icon.png",
         "default_title": "TDK",

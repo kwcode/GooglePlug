@@ -1,10 +1,75 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+<head> 
 </head>
 <body>
-    aaaaaaaa
+    <style>
+        body { width: 500px; font-family: Arial; font-size: 0.8em; }
+        .ku-table { border-collapse: collapse; border-spacing: 0; width: 100%; background-color: #fff; }
+        .ku-table th,
+        .ku-table td { text-align: left; transition: all .3s; -webkit-transition: all .3s; min-height: 22px; line-height: 22px; border: 1px solid #e2e2e2; font-size: 14px; word-break: break-all; }
+        .ku-table th { color: #2f87c1; }
+        .ku-table td a { font-size: 12px; }
+        .ku-table td.separateColor { background-color: #f4f4f4; }
+        .text-center { text-align: center !important; }
+    </style>
+    <div id="messages">
+        <!-- TDK查看器 -->
+        <table class="ku-table">
+            <thead>
+                <tr>
+                    <th style="width:75px;text-align: center;">名称</th>
+                    <th>值</th>
+                    <th style="width:30px;text-align: center;">长度</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">标题<br />title</td>
+                    <td id="title_value"></td>
+                    <td class="text-center" id="title_length"></td>
+                </tr>
+                <tr>
+                    <td class="text-center">关键词<br />keywords</td>
+                    <td id="keywords_value"></td>
+                    <td class="text-center" id="keywords_length"></td>
+                </tr>
+                <tr>
+                    <td class="text-center">描述<br />description</td>
+                    <td id="description_value"></td>
+                    <td class="text-center" id="description_length"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 其他meta 属性 -->
+        <table class="ku-table" style="margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th style="width:85px;text-align: center;">名称</th>
+                    <th>值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">content_type</td>
+                    <td id="content_type_value"></td>
+                </tr>
+                <tr>
+                    <td class="text-center">url</td>
+                    <td id="url_value"></td>
+                </tr>
+                <tr>
+                    <td class="text-center">canonical</td>
+                    <td id="canonical_value"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="footer">&copy; 2017-12 <a target="_blank" href="http://www.tool90.com">TDK</a> </div>
+
+    <script src="headkit.js"></script>
+    <script src="test.js"></script>
 </body>
 </html>
